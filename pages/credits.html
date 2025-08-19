@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuRRRRR - Credits</title>
+</head>
+
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .credits {
+      position: absolute;
+      bottom: -100%;
+      width: 100%;
+      animation: scrollUp 20s linear forwards;
+    }
+
+    @keyframes scrollUp {
+      from { bottom: -100%; }
+      to { bottom: 100%; }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 40px 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 25px;
+      font-size: 1rem;
+      background: #00bcd4;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      z-index: 10;
+    }
+
+    .back-btn:hover {
+      background: #0097a7;
+    }
+  </style>
+<body>
+
+    <div class="credits">
+    <h1>DuRRRRR</h1>
+    <p>Game Design: Ajay Logeswaran</p>
+    <p>Backend Support: Ajay</p>
+    <p>Graphics: Freepik / Custom</p>
+    <p>Special Thanks: Ajay</p>
+    <p>Testers: Friends & Team</p>
+    <p>Powered by: HTML, CSS, JavaScript</p>
+    <p>A Game by AJ Studios(Urimam: Ajay)</p>
+    <h1> Thank You for Playing </h1>
+  </div>
+    <button class="back-btn" onclick="location.href='../index.html'">Back to Home</button>
+</body>
+</html>
