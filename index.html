@@ -45,13 +45,18 @@
       background: #0097a7;
       transform: scale(1.05);
     }
-    .Upone {
-        top: 20px;
+
+    .audio-btn {
+      margin-top: 30px;
+      background: #ff5722;
+    }
+    .audio-btn:hover {
+      background: #e64a19;
     }
   </style>
 </head>
 <body>
-   <h1 id="UPone">AJ Studios Presents</h1>
+  <h1 id="UPone">AJ Studios Presents</h1>
   <h1>Durrrrr</h1>
 
   <div class="menu">
@@ -60,5 +65,32 @@
     <button onclick="location.href='pages/credits.html'">Credits</button>
     <button onclick="location.href='pages/devteam.html'">From the Studio</button>
   </div>
+
+  <!-- Audio Toggle -->
+  <button class="audio-btn" onclick="toggleAudio()">🔊 Enable Audio</button>
+
+  <!-- Background Audio -->
+  <audio id="bg-music" loop>
+    <source src="audio/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const audio = document.getElementById("bg-music");
+    const btn = document.querySelector(".audio-btn");
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        btn.textContent = "🔇 Enable Audio";
+        isPlaying = false;
+      } else {
+        audio.play();
+        btn.textContent = "🔊 Disable Audio";
+        isPlaying = true;
+      }
+    }
+  </script>
 </body>
 </html>
