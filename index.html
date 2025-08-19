@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="js/script.js"></script>
-    <title>GAME</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Durrrrr - Home</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: url(images/background/futuristic-technological-wallpaper/4562472.jpg) no-repeat center center/cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #00bcd4;
+      color: white;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+      background: #0097a7;
+      transform: scale(1.05);
+    }
+    .Upone {
+        top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div id="game">
-    <div id="bike">
-        <img src="images/bikes/Bike1-removebg-preview.png" alt="bike">
-    </div>
-    
-</div>
-<div id="score" style="width: 0%;">Score: 0</div>
+   <h1 id="UPone">AJ Studios Presents</h1>
+  <h1>Durrrrr</h1>
+
+  <div class="menu">
+    <button onclick="location.href='game.html'">Start Game</button>
+    <button onclick="alert('Use Arrow keys to move and Space to jump!')">How to Play</button>
+    <button onclick="alert('Made by Ajay ✨')">Credits</button>
+  </div>
 </body>
 </html>
