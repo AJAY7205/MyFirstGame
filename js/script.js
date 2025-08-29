@@ -8,8 +8,7 @@ window.onload = function () {
   let obstacles = [];
   const numObstacles = 3;
 
-  const OBSTACLE_SPEED = 3;
-  const lanes = [160, 285, 410, 535]; 
+  const lanes = [160, 285, 410, 535]; // x positions of lanes
   let bikeLane = 0;
   bike.style.left = lanes[bikeLane] + "px";
 
@@ -21,7 +20,7 @@ window.onload = function () {
 
   let lastIndex = -1;
 
-  
+  // Create obstacles
   for (let i = 0; i < numObstacles; i++) {
   let obstacle = document.createElement("div");
   obstacle.classList.add("obstacle");
@@ -32,6 +31,7 @@ window.onload = function () {
 
   let img = document.createElement("img");
 
+  // Pick random image not same as last
   let va;
   do {
     va = Math.floor(Math.random() * obstacleImages.length);
@@ -41,6 +41,7 @@ window.onload = function () {
   img.src = obstacleImages[va];
   img.alt = "Obstacle";
 
+  // normalize sizes depending on type
   if (img.src.includes("isuzu") || img.src.includes("truck")) {
     img.style.width = "120px";
     img.style.height = "100px";
@@ -63,6 +64,8 @@ window.onload = function () {
   obstacles.push(obstacle);
 }
 
+
+  // bike movement
   document.addEventListener("keydown", (event) => {
     if (isGameOver) return;
 
@@ -75,6 +78,8 @@ window.onload = function () {
     bike.style.left = lanes[bikeLane] + "px";
   });
 
+  // reset obstacle
+  // reset obstacle
 function resetObstacle(obstacle, firstTime = false, index = 0) {
   let lane;
   let tries = 0;
@@ -111,13 +116,9 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
 
     obstacles.forEach((obstacle) => {
       let obstacleTop = parseInt(obstacle.style.top);
-      if(speed > 50){
-        OBSTACLE_SPEED = 4;
-      }else if(speed > 80){
-        OBSTACLE_SPEED = 5;
-      }
+
       if (obstacleTop < game.clientHeight) {
-        obstacle.style.top = obstacleTop + OBSTACLE_SPEED + "px"; 
+        obstacle.style.top = obstacleTop + 3 + "px"; // falling speed
       } else {
         resetObstacle(obstacle);
         score++;
