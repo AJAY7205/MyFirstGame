@@ -8,7 +8,8 @@ window.onload = function () {
   let obstacles = [];
   const numObstacles = 3;
 
-  const lanes = [160, 285, 410, 535]; // x positions of lanes
+  const OBSTACLE_SPEED = 3;
+  const lanes = [160, 285, 410, 535]; 
   let bikeLane = 0;
   bike.style.left = lanes[bikeLane] + "px";
 
@@ -20,7 +21,7 @@ window.onload = function () {
 
   let lastIndex = -1;
 
-  // Create obstacles
+  
   for (let i = 0; i < numObstacles; i++) {
   let obstacle = document.createElement("div");
   obstacle.classList.add("obstacle");
@@ -31,7 +32,6 @@ window.onload = function () {
 
   let img = document.createElement("img");
 
-  // Pick random image not same as last
   let va;
   do {
     va = Math.floor(Math.random() * obstacleImages.length);
@@ -41,7 +41,6 @@ window.onload = function () {
   img.src = obstacleImages[va];
   img.alt = "Obstacle";
 
-  // normalize sizes depending on type
   if (img.src.includes("isuzu") || img.src.includes("truck")) {
     img.style.width = "120px";
     img.style.height = "100px";
@@ -64,8 +63,6 @@ window.onload = function () {
   obstacles.push(obstacle);
 }
 
-
-  // bike movement
   document.addEventListener("keydown", (event) => {
     if (isGameOver) return;
 
@@ -78,8 +75,6 @@ window.onload = function () {
     bike.style.left = lanes[bikeLane] + "px";
   });
 
-  // reset obstacle
-  // reset obstacle
 function resetObstacle(obstacle, firstTime = false, index = 0) {
   let lane;
   let tries = 0;
@@ -118,7 +113,7 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
       let obstacleTop = parseInt(obstacle.style.top);
 
       if (obstacleTop < game.clientHeight) {
-        obstacle.style.top = obstacleTop + 3 + "px"; // falling speed
+        obstacle.style.top = obstacleTop + OBSTACLE_SPEED + "px"; 
       } else {
         resetObstacle(obstacle);
         score++;
@@ -133,20 +128,29 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
 
   // collision detection
   function checkCollision(obstacle) {
-    let bikeRect = bike.getBoundingClientRect();
-    let obsRect = obstacle.getBoundingClientRect();
+  let bikeLeft = parseInt(bike.style.left);
+  let bikeTop = parseInt(bike.style.top) || (game.clientHeight - bike.offsetHeight - 20);
 
-    if (
-      bikeRect.left < obsRect.right &&
-      bikeRect.right > obsRect.left &&
-      bikeRect.top < obsRect.bottom &&
-      bikeRect.bottom > obsRect.top
-    ) {
-      isGameOver = true;
-      alert("Game Over! Final Score: " + score);
-      location.reload();
-    }
+  let obsLeft = parseInt(obstacle.style.left);
+  let obsTop = parseInt(obstacle.style.top);
+
+  let bikeWidth = bike.offsetWidth;
+  let bikeHeight = bike.offsetHeight;
+  let obsWidth = obstacle.offsetWidth;
+  let obsHeight = obstacle.offsetHeight;
+
+  if (
+    bikeLeft < obsLeft + obsWidth &&
+    bikeLeft + bikeWidth > obsLeft &&
+    bikeTop < obsTop + obsHeight &&
+    bikeTop + bikeHeight > obsTop
+  ) {
+    isGameOver = true;
+    alert("Game Over! Final Score: " + score);
+    location.reload();
   }
+}
+
 
   gameLoop();
 };
