@@ -105,17 +105,12 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
 }
 
 
-  
+  // main loop
   function gameLoop() {
     if (isGameOver) return;
 
     obstacles.forEach((obstacle) => {
       let obstacleTop = parseInt(obstacle.style.top);
-      if(score >= 50){
-        OBSTACLE_SPEED = 4;
-      }else if(score >= 80){
-        OBSTACLE_SPEED = 5;
-      }
 
       if (obstacleTop < game.clientHeight) {
         obstacle.style.top = obstacleTop + OBSTACLE_SPEED + "px"; 
@@ -133,29 +128,20 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
 
   // collision detection
   function checkCollision(obstacle) {
-  let bikeLeft = parseInt(bike.style.left);
-  let bikeTop = parseInt(bike.style.top) || (game.clientHeight - bike.offsetHeight - 20);
+    let bikeRect = bike.getBoundingClientRect();
+    let obsRect = obstacle.getBoundingClientRect();
 
-  let obsLeft = parseInt(obstacle.style.left);
-  let obsTop = parseInt(obstacle.style.top);
-
-  let bikeWidth = bike.offsetWidth;
-  let bikeHeight = bike.offsetHeight;
-  let obsWidth = obstacle.offsetWidth;
-  let obsHeight = obstacle.offsetHeight;
-
-  if (
-    bikeLeft < obsLeft + obsWidth &&
-    bikeLeft + bikeWidth > obsLeft &&
-    bikeTop < obsTop + obsHeight &&
-    bikeTop + bikeHeight > obsTop
-  ) {
-    isGameOver = true;
-    alert("Game Over! Final Score: " + score);
-    location.reload();
+    if (
+      bikeRect.left < obsRect.right &&
+      bikeRect.right > obsRect.left &&
+      bikeRect.top < obsRect.bottom &&
+      bikeRect.bottom > obsRect.top
+    ) {
+      isGameOver = true;
+      alert("Game Over! Final Score: " + score);
+      location.reload();
+    }
   }
-}
-
 
   gameLoop();
 };
