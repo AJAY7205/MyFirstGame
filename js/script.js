@@ -8,6 +8,7 @@ window.onload = function () {
   let obstacles = [];
   const numObstacles = 3;
 
+  const OBS = 3;
   const lanes = [160, 285, 410, 535]; // x positions of lanes
   let bikeLane = 0;
   bike.style.left = lanes[bikeLane] + "px";
@@ -118,7 +119,7 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
       let obstacleTop = parseInt(obstacle.style.top);
 
       if (obstacleTop < game.clientHeight) {
-        obstacle.style.top = obstacleTop + 3 + "px"; // falling speed
+        obstacle.style.top = obstacleTop + OBS + "px"; // falling speed
       } else {
         resetObstacle(obstacle);
         score++;
