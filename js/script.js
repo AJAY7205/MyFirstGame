@@ -111,7 +111,11 @@ function resetObstacle(obstacle, firstTime = false, index = 0) {
 
     obstacles.forEach((obstacle) => {
       let obstacleTop = parseInt(obstacle.style.top);
-
+      if(speed > 50){
+        OBSTACLE_SPEED = 4;
+      }else if(speed > 80){
+        OBSTACLE_SPEED = 5;
+      }
       if (obstacleTop < game.clientHeight) {
         obstacle.style.top = obstacleTop + OBSTACLE_SPEED + "px"; 
       } else {
